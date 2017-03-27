@@ -1,0 +1,94 @@
+{
+  "manifest_version": 2,
+
+  "name": "Sliwipi",
+  "description": "__MSG_ext_desc__",
+  "version": "1.0.0",
+
+  "background": {
+    "scripts": ["js/background-script.js"],
+    "persistent": true
+  },
+
+  "web_accessible_resources": [
+    "css/common.css",
+    "css/library-performance.css",
+    "css/wishlist-performance.css",
+    "js/BuildGameRow-injectable.js",
+    "js/pagination.js",
+    "js/thenBy.js",
+    "js/debounce.js",
+    "js/dom-i18n.js",
+    "js/library-performance-injectable.js",
+    "_locales/*",
+    "html/library.html",
+    "html/wishlist.html"
+  ],
+
+  "icons": {
+    "32": "icon/32.png",
+    "128": "icon/128.png"
+  },
+
+  "options_ui": {
+    "page": "html/options.html",
+    "chrome_style": true
+  },
+
+  "browser_action": {
+    "default_icon": "icon/popup.png",
+    "default_popup": "html/options.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://steamcommunity.com/*/games/?tab=recent*",
+        "http://steamcommunity.com/*/games?tab=recent*"
+      ],
+      "js": [
+        "js/cookies.js",
+        "js/get-data-by-event.js",
+        "js/dom-i18n.js",
+        "js/storage.js",
+        "js/constants.js",
+        "js/jquery.min.js",
+        "js/pagination.js",
+        "js/debounce.js",
+        "js/thenBy.js",
+        "js/wishlist-performance.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "http://steamcommunity.com/*/games/?tab=all*",
+        "http://steamcommunity.com/*/games?tab=all*"
+      ],
+      "js": [
+        "js/cookies.js",
+        "js/get-data-by-event.js",
+        "js/constants.js",
+        "js/jquery.min.js",
+        "js/storage.js",
+        "js/BuildGameRow.js",
+        "js/library-performance.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+
+  "permissions": [
+    "contextMenus",
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "tabs",
+    "http://steamcommunity.com/*/games*",
+    "http://steamcommunity.com/*/wishlist*",
+    "http://store.steampowered.com/about*",
+    "http://store.steampowered.com/api/*"
+  ],
+
+  "default_locale": "en"
+}

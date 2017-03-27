@@ -1,0 +1,41 @@
+/*
+ Copyright 2017 Yan Li
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+.wishlist-owned-list-pagination {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.wishlist-owned-list-pagination > * {
+  display: inline-block;
+  height: 24px;
+  min-width: 44px;
+  margin-left: 3px;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+#es_gl_show_notcommon_games,
+#es_gl_show_notcommon_games_label,
+#es_gl_show_common_games,
+#es_gl_show_common_games_label {
+  display: none !important;
+}
+
+#show_common_games,
+#show_common_games + label {
+  display: inline-block !important;
+}

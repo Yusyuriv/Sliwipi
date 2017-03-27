@@ -1,0 +1,102 @@
+<!--
+ Copyright 2017 Yan Li
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<div class="sliwipi-filters-container">
+  <span data-i18n="wishlist_filter">Filter games</span>
+  <div class="gray_bevel for_text_input sliwipi-game-name-filter-container">
+    <input type="text" id="game-name-filter">
+  </div>
+  <div class="sliwipi-sorting-options">
+    <div
+      id="sliwipi-sort-by-pulldown" class="pulldown global_action_link sliwipi-pulldown"
+      onmouseover="ShowMenu(this, 'sliwipi-sort-by-dropdown', 'right', 'bottom', true)"
+      onmouseout="HideMenu(this, 'sliwipi-sort-by-dropdown')"
+    >
+      <span data-i18n="wishlist_sort_by">Sort by</span>
+      <span class="sliwipi-dropdown-label" data-i18n="wishlist_sort_rank">rank</span>
+      <div id="sliwipi-sort-by-dropdown" class="popup_block_new" style="display: none;">
+        <div class="popup_body popup_menu">
+          <a class="popup_menu_item" href="#"
+             onclick="HideMenu(this.parentNode.parentNode.parentNode, 'sliwipi-sort-by-dropdown')" data-data="rank"
+             data-i18n="wishlist_sort_rank">rank</a>
+          <a class="popup_menu_item" href="#"
+             onclick="HideMenu(this.parentNode.parentNode.parentNode, 'sliwipi-sort-by-dropdown')" data-data="name"
+             data-i18n="wishlist_sort_name">name</a>
+          <a class="popup_menu_item" href="#"
+             onclick="HideMenu(this.parentNode.parentNode.parentNode, 'sliwipi-sort-by-dropdown')" data-data="price"
+             data-i18n="wishlist_sort_price">price</a>
+          <a class="popup_menu_item" href="#"
+             onclick="HideMenu(this.parentNode.parentNode.parentNode, 'sliwipi-sort-by-dropdown')" data-data="percent"
+             data-i18n="wishlist_sort_discount_p">discount (percentage)</a>
+          <a class="popup_menu_item" href="#"
+             onclick="HideMenu(this.parentNode.parentNode.parentNode, 'sliwipi-sort-by-dropdown')" data-data="diff"
+             data-i18n="wishlist_sort_discount_a">discount (amount)</a>
+        </div>
+      </div>
+    </div>
+    <div
+      id="sliwipi-filter-by-pulldown" class="pulldown global_action_link sliwipi-pulldown"
+      onmouseover="ShowMenu(this, 'sliwipi-filter-by-dropdown', 'right', 'bottom', true)"
+      onmouseout="HideMenu(this, 'sliwipi-filter-by-dropdown')"
+    >
+      <span data-i18n="wishlist_filter_by">Show</span>
+      <span class="sliwipi-dropdown-label" data-i18n="wishlist_filter_all">all games</span>
+      <div id="sliwipi-filter-by-dropdown" class="popup_block_new" style="display: none;">
+        <div class="popup_body popup_menu">
+          <a class="popup_menu_item" href="#"
+             onclick="HideMenu(this.parentNode.parentNode.parentNode, 'sliwipi-filter-by-dropdown')" data-data="all"
+             data-i18n="wishlist_filter_all">all games</a>
+          <a class="popup_menu_item" href="#"
+             onclick="HideMenu(this.parentNode.parentNode.parentNode, 'sliwipi-filter-by-dropdown')"
+             data-data="discount" data-i18n="wishlist_filter_discount">games with discount</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="btnv6_blue_hoverfade btn_small btn_disabled btn-save-changes">
+  <span data-i18n="wishlist_save">Save changes</span>
+</div>
+<form action="${link}update/" method="POST" id="update-sorting">
+  <input type="hidden" name="sessionid">
+</form>
+<div>
+  <div class="sliwipi-pagination"></div>
+  <div class="sliwipi-actual-listing">
+    <div style="text-align: center">
+      <div class="sliwipi-loading-spinner"><h1 class="sliwipi-no-border" data-i18n="wishlist_loading">Loading...</h1>
+      </div>
+    </div>
+  </div>
+  <div class="sliwipi-pagination"></div>
+</div>
+<div class="btnv6_blue_hoverfade btn_small btn_disabled btn-save-changes">
+  <span data-i18n="wishlist_save">Save changes</span>
+</div>
+<div class="game_area_purchase_game_wrapper">
+  <div class="game_area_purchase_game">
+    <h1 data-i18n="wishlist_header_total">Wishlist</h1>
+    <p class="package_contents">
+      <b data-i18n="wishlist_includes_total">Includes 0 items:</b>
+      <span></span>
+    </p>
+    <div class="game_purchase_action">
+      <div class="game_purchase_action_bg">
+        <div class="game_purchase_price price">0</div>
+      </div>
+    </div>
+  </div>
+</div>

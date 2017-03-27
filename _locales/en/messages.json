@@ -1,0 +1,142 @@
+{
+  "ext_desc": {
+    "message": "This extension is supposed to drastically reduce the stuttering when trying to view someone's big library or wishlist on Steam.",
+    "description": "Extension's description"
+  },
+  "options_library_performance_improvement": {
+    "message": "Library performance improvement",
+    "description": "Label on the panel in options"
+  },
+  "options_wishlist_performance_improvement": {
+    "message": "Wishlist performance improvement",
+    "description": "Label on the panel in options"
+  },
+  "options_language": {
+    "message": "Language",
+    "description": "Label of the 'Language' section"
+  },
+  "options_options_language": {
+    "message": "Options:",
+    "description": "Label of the 'Options Language' dropdown in options"
+  },
+  "options_main_language": {
+    "message": "Main:",
+    "description": "Label of the 'Main Language' dropdown in options"
+  },
+  "options_enabled": {
+    "message": "Enabled",
+    "description": "Label of the 'Enabled' checkbox in options"
+  },
+  "options_rows_per_page": {
+    "message": "Rows per page:",
+    "description": "Label of the 'Rows per page' dropdown in options"
+  },
+  "library_sort_by": {
+    "message": "Sort by",
+    "description": "Label of 'Sort by' list"
+  },
+  "library_sort_name": {
+    "message": "name",
+    "description": "Sort by name label"
+  },
+  "library_sort_playtime": {
+    "message": "playtime",
+    "description": "Sort by playtime label"
+  },
+  "library_sort_installed_size": {
+    "message": "installed size",
+    "description": "Sort by installed size label"
+  },
+  "library_filter_by": {
+    "message": "Show",
+    "description": "Label of the list of filters"
+  },
+  "library_filter_all": {
+    "message": "all games",
+    "description": "Show all games label"
+  },
+  "library_filter_installed": {
+    "message": "installed games",
+    "description": "Show installed games label"
+  },
+  "library_filter_not_installed": {
+    "message": "not installed games",
+    "description": "Show not installed games label"
+  },
+  "library_filter_played": {
+    "message": "played",
+    "description": "Show played games label"
+  },
+  "library_filter_not_played": {
+    "message": "not played",
+    "description": "Show not played games label"
+  },
+  "wishlist_sort_by": {
+    "message": "Sort by",
+    "description": "Label of 'Sort by' list"
+  },
+  "wishlist_sort_rank": {
+    "message": "rank",
+    "description": "Label of sorting by rank option"
+  },
+  "wishlist_sort_name": {
+    "message": "name",
+    "description": "Label of sorting by name option"
+  },
+  "wishlist_sort_price": {
+    "message": "price",
+    "description": "Label of sorting by price option"
+  },
+  "wishlist_sort_discount_p": {
+    "message": "discount (percentage)",
+    "description": "Label of sorting by discount percentage option"
+  },
+  "wishlist_sort_discount_a": {
+    "message": "discount (amount)",
+    "description": "Label of sorting by discount amount option"
+  },
+  "wishlist_filter_by": {
+    "message": "Show",
+    "description": "Label of 'Filter by' list"
+  },
+  "wishlist_filter_all": {
+    "message": "all games",
+    "description": "Label of 'All games' filter option"
+  },
+  "wishlist_filter_discount": {
+    "message": "games with discount",
+    "description": "Label of 'Games with discount' filter option"
+  },
+  "wishlist_filter": {
+    "message": "Filter games",
+    "description": "Label before the textfield that filters games by their name"
+  },
+  "wishlist_save": {
+    "message": "Save changes",
+    "description": "Label on button that lets to save rank changes"
+  },
+  "wishlist_loading": {
+    "message": "Loading...",
+    "description": "Message displayed in the spinning circle while wishlist is loading"
+  },
+  "wishlist_header_total": {
+    "message": "Wishlist",
+    "description": "Header in the block containing total wishlist information"
+  },
+  "wishlist_includes_total": {
+    "message": "Total of 0 items:",
+    "description": "Wishlist total block, label before the list of wishlisted items"
+  },
+  "pagination_button_prev": {
+    "message": "< prev",
+    "description": "'Previous page' button in pagination'"
+  },
+  "pagination_button_next": {
+    "message": "next >",
+    "description": "'Next page' button in pagination"
+  },
+  "about_link": {
+    "message": "About",
+    "description": "'About' link in the options page"
+  }
+}

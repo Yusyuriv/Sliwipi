@@ -1,0 +1,107 @@
+{
+  "ext_desc": {
+    "message": "Esta extensão serve para reduzir drasticamente a latência ao tentar visualizar uma biblioteca ou lista de desejos com muitos elementos no Steam."
+  },
+  "options_library_performance_improvement": {
+    "message": "Melhorar desempenho em bibliotecas"
+  },
+  "options_wishlist_performance_improvement": {
+    "message": "Melhorar desempenho em listas de desejos"
+  },
+  "options_language": {
+    "message": "Idioma"
+  },
+  "options_options_language": {
+    "message": "Opções:"
+  },
+  "options_main_language": {
+    "message": "Principal:"
+  },
+  "options_enabled": {
+    "message": "Ligado"
+  },
+  "options_rows_per_page": {
+    "message": "Linhas por página:"
+  },
+  "library_sort_by": {
+    "message": "Ordenar por"
+  },
+  "library_sort_name": {
+    "message": "nome"
+  },
+  "library_sort_playtime": {
+    "message": "tempo de jogo"
+  },
+  "library_sort_installed_size": {
+    "message": "tamanho da instalação"
+  },
+  "library_filter_by": {
+    "message": "Mostrar"
+  },
+  "library_filter_all": {
+    "message": "todos os jogos"
+  },
+  "library_filter_installed": {
+    "message": "jogos instalados"
+  },
+  "library_filter_not_installed": {
+    "message": "jogos não instalados"
+  },
+  "library_filter_played": {
+    "message": "já jogados"
+  },
+  "library_filter_not_played": {
+    "message": "nunca jogados"
+  },
+  "wishlist_sort_by": {
+    "message": "Ordenar por"
+  },
+  "wishlist_sort_rank": {
+    "message": "posição"
+  },
+  "wishlist_sort_name": {
+    "message": "nome"
+  },
+  "wishlist_sort_price": {
+    "message": "preço"
+  },
+  "wishlist_sort_discount_p": {
+    "message": "desconto (percentual)"
+  },
+  "wishlist_sort_discount_a": {
+    "message": "desconto (valor)"
+  },
+  "wishlist_filter_by": {
+    "message": "Mostrar"
+  },
+  "wishlist_filter_all": {
+    "message": "todos os jogos"
+  },
+  "wishlist_filter_discount": {
+    "message": "jogos com desconto"
+  },
+  "wishlist_filter": {
+    "message": "Buscar"
+  },
+  "wishlist_save": {
+    "message": "Salvar alterações"
+  },
+  "wishlist_loading": {
+    "message": "Carregando..."
+  },
+  "wishlist_header_total": {
+    "message": "Lista de desejos"
+  },
+  "wishlist_includes_total": {
+    "message": "Total de 0 itens:"
+  },
+  "pagination_button_prev": {
+    "message": "< ant"
+  },
+  "pagination_button_next": {
+    "message": "próx >"
+  },
+  "about_link": {
+    "message": "Sobre"
+  }
+}

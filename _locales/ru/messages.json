@@ -1,0 +1,107 @@
+{
+  "ext_desc": {
+    "message": "Это расширение должно значительно снижать зависание при просмотре чьей-либо большой библиотеки или списка желаемого"
+  },
+  "options_library_performance_improvement": {
+    "message": "Ускорение работы библиотеки"
+  },
+  "options_wishlist_performance_improvement": {
+    "message": "Ускорение работы списка желаемого"
+  },
+  "options_language": {
+    "message": "Язык"
+  },
+  "options_options_language": {
+    "message": "настроек:"
+  },
+  "options_main_language": {
+    "message": "основного расширения:"
+  },
+  "options_enabled": {
+    "message": "Включено"
+  },
+  "options_rows_per_page": {
+    "message": "Количество игр на странице:"
+  },
+  "library_sort_by": {
+    "message": "Сортировать по"
+  },
+  "library_sort_name": {
+    "message": "имени"
+  },
+  "library_sort_playtime": {
+    "message": "игровому времени"
+  },
+  "library_sort_installed_size": {
+    "message": "установленному размеру"
+  },
+  "library_filter_by": {
+    "message": "Показывать"
+  },
+  "library_filter_all": {
+    "message": "все игры"
+  },
+  "library_filter_installed": {
+    "message": "установленные игры"
+  },
+  "library_filter_not_installed": {
+    "message": "неустановленные игры"
+  },
+  "library_filter_played": {
+    "message": "сыгранные игры"
+  },
+  "library_filter_not_played": {
+    "message": "несыгранные игры"
+  },
+  "wishlist_sort_by": {
+    "message": "Сортировать по"
+  },
+  "wishlist_sort_rank": {
+    "message": "предпочтению"
+  },
+  "wishlist_sort_name": {
+    "message": "названию"
+  },
+  "wishlist_sort_price": {
+    "message": "стоимости"
+  },
+  "wishlist_sort_discount_p": {
+    "message": "проценту скидки"
+  },
+  "wishlist_sort_discount_a": {
+    "message": "размеру скидки"
+  },
+  "wishlist_filter_by": {
+    "message": "Показывать"
+  },
+  "wishlist_filter_all": {
+    "message": "все игры"
+  },
+  "wishlist_filter_discount": {
+    "message": "игры со скидками"
+  },
+  "wishlist_filter": {
+    "message": "Поиск"
+  },
+  "wishlist_save": {
+    "message": "Сохранить изменения"
+  },
+  "wishlist_loading": {
+    "message": "Загрузка..."
+  },
+  "wishlist_header_total": {
+    "message": "Список желаемого"
+  },
+  "wishlist_includes_total": {
+    "message": "Состоит из 0 предметов:"
+  },
+  "pagination_button_prev": {
+    "message": "< назад"
+  },
+  "pagination_button_next": {
+    "message": "вперёд >"
+  },
+  "about_link": {
+    "message": "О расширении"
+  }
+}

@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+ Copyright 2017 Yan Li
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Performance Improver Options</title>
+  <link href="/css/options.css" rel="stylesheet">
+  <script src="/js/constants.js"></script>
+  <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+<fieldset>
+  <legend data-i18n="options_language">Language</legend>
+  <label class="flex"><span data-i18n="options_main_language">Main:</span>
+    <select class="flex-1" id="features-language">
+      <option value="auto">Auto</option>
+      <option value="en">English</option>
+      <option value="pt_BR">Português Brasileiro (Brazilian Portuguese)</option>
+      <option value="ru">Русский (Russian)</option>
+    </select>
+  </label>
+  <label class="flex small-margin-top"><span data-i18n="options_options_language">Options:</span>
+    <select class="flex-1" id="options-language">
+      <option value="auto">Auto</option>
+      <option value="en">English</option>
+      <option value="pt_BR">Português Brasileiro (Brazilian Portuguese)</option>
+      <option value="ru">Русский (Russian)</option>
+    </select>
+  </label>
+</fieldset>
+<fieldset class="margin-top">
+  <legend data-i18n="options_library_performance_improvement">Library performance improvement</legend>
+  <label><span data-i18n="options_enabled">Enabled</span> <input type="checkbox" id="library-enabled"></label>
+  <br>
+  <label><span data-i18n="options_rows_per_page">Rows per page:</span>
+    <select id="library-per-page">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </label>
+</fieldset>
+<fieldset class="margin-top">
+  <legend data-i18n="options_wishlist_performance_improvement">Wishlist performance improvement</legend>
+  <label><span data-i18n="options_enabled">Enabled</span> <input type="checkbox" id="wishlist-enabled"></label>
+  <br>
+  <label><span data-i18n="options_rows_per_page">Rows per page:</span>
+    <select id="wishlist-per-page">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </label>
+</fieldset>
+<p class="about-link">
+  <a href="about.html" target="_blank" data-i18n="about_link">About</a>
+</p>
+<script src="/js/storage.js"></script>
+<script src="/js/dom-i18n.js"></script>
+<script src="/js/options.js"></script>
+</body>
+</html>
