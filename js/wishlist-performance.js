@@ -136,7 +136,9 @@
   let currentPage = [];
   let pageNum = 1;
 
-  let showSaveChanges = $('#global_actions').find('> a.user_avatar').attr('href').startsWith($('.profile_small_header_bg .profile_small_header_texture > a').attr('href'));
+  let showSaveChangesA1 = $('#global_actions').find('> a.user_avatar');
+  let showSaveChangesA2 = $('.profile_small_header_bg').find('.profile_small_header_texture > a');
+  let showSaveChanges = showSaveChangesA1.length && showSaveChangesA2.length && showSaveChangesA1.attr('href').startsWith(showSaveChangesA2.attr('href'));
 
   let storeSessionid, sessionid;
 
@@ -310,7 +312,10 @@
       link = link + '/wishlist/';
       history.replaceState({}, 'Steam Community :: Wishlist', link);
 
-      let html = await $.get(chrome.extension.getURL('/html/wishlist.html'));
+      let html = await $.ajax({
+        url: chrome.extension.getURL('/html/wishlist.html'),
+        dataType: 'text'
+      });
       document.querySelector('#tabs_basebg').innerHTML = html;
       let updateSortingForm = $('#update-sorting');
       let btnSaveChanges = $('.btn-save-changes');

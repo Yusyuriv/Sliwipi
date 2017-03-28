@@ -34,9 +34,11 @@
   language = LIST_AVAILABLE_LANGUAGES[language] || 'en';
   let autoLanguage = language;
   language = mainLanguage === 'auto' ? language : mainLanguage;
-  let LANGUAGE_DATA = await $.getJSON({ url: chrome.extension.getURL(`/_locales/${language}/messages.json`) });
+  let LANGUAGE_DATA = $.getJSON({ url: chrome.extension.getURL(`/_locales/${language}/messages.json`) });
 
   document.addEventListener('DOMContentLoaded', async function () {
+    LANGUAGE_DATA = await LANGUAGE_DATA;
+
     let link1 = document.createElement('link');
     link1.setAttribute('rel', 'stylesheet');
     link1.setAttribute('href', chrome.extension.getURL('/css/common.css'));
@@ -47,7 +49,10 @@
     link2.setAttribute('href', chrome.extension.getURL('/css/library-performance.css'));
     document.head.appendChild(link2);
 
-    let html = await $.get(chrome.extension.getURL('/html/library.html'));
+    let html = await $.ajax({
+      url: chrome.extension.getURL('/html/library.html'),
+      dataType: 'text'
+    });
 
     let s = document.createElement('script');
     s.innerHTML = `window.SLIWIPI = { 

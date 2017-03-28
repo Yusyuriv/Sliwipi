@@ -95,7 +95,9 @@
     return;
   document.querySelector('#games_list_rows').innerHTML = '<div class="wishlist-owned-list-pagination"></div><div class="sliwipi-actual-list"></div><div class="wishlist-owned-list-pagination"></div>';
 
-  let hideUnnecessaryOptions = document.querySelector('#global_actions > a > img').getAttribute('src') !== document.querySelector('.profile_small_header_avatar > .playerAvatar > img').getAttribute('src').replace('_medium', '');
+  let hideUnnecessaryOptionsImg1 = document.querySelector('#global_actions > a > img');
+  let hideUnnecessaryOptionsImg2 = document.querySelector('.profile_small_header_avatar > .playerAvatar > img');
+  let hideUnnecessaryOptions = !hideUnnecessaryOptionsImg1 || !hideUnnecessaryOptionsImg2 || hideUnnecessaryOptionsImg1.getAttribute('src') !== hideUnnecessaryOptionsImg2.getAttribute('src').replace('_medium', '');
 
   const originalData = JSON.parse(JSON.stringify(rgGames)).map(/**IGameInfo*/row => {
     row.hours = row.hours_forever ? parseFloat(row.hours_forever) : 0;
