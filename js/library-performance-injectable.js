@@ -100,7 +100,7 @@
   let hideUnnecessaryOptions = !hideUnnecessaryOptionsImg1 || !hideUnnecessaryOptionsImg2 || hideUnnecessaryOptionsImg1.getAttribute('src') !== hideUnnecessaryOptionsImg2.getAttribute('src').replace('_medium', '');
 
   const originalData = JSON.parse(JSON.stringify(rgGames)).map(/**IGameInfo*/row => {
-    row.hours = row.hours_forever ? parseFloat(row.hours_forever) : 0;
+    row.hours = row.hours_forever ? parseFloat(row.hours_forever.replace(/,/g, '')) : 0;
     if(!row.client_summary) {
       row.client_summary = {
         localContentSize: '0 B'
