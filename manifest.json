@@ -3,7 +3,7 @@
 
   "name": "Sliwipi",
   "description": "__MSG_ext_desc__",
-  "version": "1.0.0",
+  "version": "1.0.2",
 
   "background": {
     "scripts": ["js/background-script.js"],

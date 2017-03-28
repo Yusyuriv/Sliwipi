@@ -114,12 +114,7 @@
     let $wishlistTotalAmount = $wishlistTotal.find('.package_contents > b');
     let $wishlistTotalList = $wishlistTotal.find('.package_contents > span');
     $wishlistTotalList.text(itemNames.join(', '));
-    if (!wishlistStrings.b) {
-      wishlistStrings.b = $wishlistTotalAmount.text();
-    }
-    $wishlistTotalAmount.text(
-      wishlistStrings.b.replace('0', itemNames.length)
-    );
+    $wishlistTotalAmount.text($wishlistTotalAmount.text().replace(/\d+/, itemNames.length));
     let $wishlistTotalPrice = $wishlistTotal.find('.price');
     if(wishlistStrings.totalPrice) {
       totalPrice = formatMoney(totalPrice);
@@ -286,6 +281,7 @@
     }).sort(sortingFunction);
 
     regeneratePagination(page);
+    addWishlistTotalData();
   }
 
   function renderPage() {
