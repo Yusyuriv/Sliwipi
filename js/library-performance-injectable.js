@@ -130,6 +130,10 @@
   gameslistSortOptions.parentNode.insertBefore(filterGamesLabel, gameslistSortOptions.nextSibling);
   filterGamesLabel.parentNode.removeChild(filterGamesLabel.nextSibling);
 
+  let br = document.createElement('br');
+  let gamesInCommonCheckbox = document.querySelector('#gameslist_controls > .gray_bevel.for_text_input').nextElementSibling;
+  gamesInCommonCheckbox.parentNode.insertBefore(br, gamesInCommonCheckbox);
+
   if(hideUnnecessaryOptions) {
     document.querySelectorAll('[data-data="installedSize"],[data-data$="installed"]').forEach(v => {
       v.parentNode.removeChild(v);
@@ -218,6 +222,10 @@
   }
 
   function reapplyPagination(num = 1) {
+    if(!$.fn.pagination) {
+      setTimeout(reapplyPagination.bind(null, num), 500);
+      return;
+    }
     $('.wishlist-owned-list-pagination').pagination({
       currentPage: num,
       elements: filteredData,

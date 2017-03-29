@@ -37,3 +37,6 @@
   font-weight: bold;
   text-decoration: underline;
 }
+#gameslist_controls > .gray_bevel.for_text_input {
+  margin-left: 5px;
+}
