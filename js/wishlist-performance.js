@@ -362,7 +362,7 @@
 
       if(DEBUG)
         console.time(STR_EXTENSION_NAME + ': Downloading wishlist');
-      $.get(link, data => {
+      $.get(link, async function(data) {
         if(DEBUG) {
           console.timeEnd(STR_EXTENSION_NAME + ': Downloading wishlist');
           console.time(STR_EXTENSION_NAME + ': Parsing');

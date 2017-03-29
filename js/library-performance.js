@@ -34,9 +34,9 @@
   language = LIST_AVAILABLE_LANGUAGES[language] || 'en';
   let autoLanguage = language;
   language = mainLanguage === 'auto' ? language : mainLanguage;
-  let LANGUAGE_DATA = $.getJSON({ url: chrome.extension.getURL(`/_locales/${language}/messages.json`) });
+  let LANGUAGE_DATA = $.getJSON(chrome.extension.getURL(`/_locales/${language}/messages.json`));
 
-  document.addEventListener('DOMContentLoaded', async function () {
+  async function onReady() {
     LANGUAGE_DATA = await LANGUAGE_DATA;
 
     let link1 = document.createElement('link');
@@ -88,14 +88,16 @@
     s.src = chrome.extension.getURL('/js/library-performance-injectable.js');
     document.body.appendChild(s);
     s.parentNode.removeChild(s);
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', onReady);
 
   async function changeLanguage(data) {
     if(!data.newLanguage)
       return;
     language = data.newLanguage === 'auto' ? autoLanguage : data.newLanguage;
 
-    LANGUAGE_DATA = await $.getJSON({ url: chrome.extension.getURL(`/_locales/${language}/messages.json`) });
+    LANGUAGE_DATA = await $.getJSON(chrome.extension.getURL(`/_locales/${language}/messages.json`));
 
     let s = document.createElement('script');
     s.innerHTML = `

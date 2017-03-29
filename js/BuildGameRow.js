@@ -28,21 +28,6 @@
   // BuildGameRow function so it doesn't slow down the browser on large lists
   let s = document.createElement('script');
   s.src = chrome.extension.getURL('/js/BuildGameRow-injectable.js');
-
-  // an observer that injects the script above into the page as soon
-  // as `head` tag is already in the page
-  let observer = new MutationObserver(async function (mutations) {
-    for (let i = 0; i < mutations.length; i++) {
-      let mutation = mutations[i];
-      let addedNode = mutation.addedNodes[0];
-      if (addedNode && addedNode.tagName === 'BODY') {
-        observer.disconnect();
-
-        document.head.appendChild(s);
-        s.parentNode.removeChild(s);
-        return;
-      }
-    }
-  });
-  observer.observe(document.documentElement, {childList: true, attributes: false, subtree: false});
+  document.documentElement.appendChild(s);
+  s.parentNode.removeChild(s);
 })();

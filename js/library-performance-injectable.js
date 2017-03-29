@@ -93,6 +93,10 @@
     $ = $J;
   if(!window.SLIWIPI_BUILD_GAME_ROW_PATCHED)
     return;
+  for(let game of window.rgGames) {
+    BuildGameRow(game);
+  }
+
   document.querySelector('#games_list_rows').innerHTML = '<div class="wishlist-owned-list-pagination"></div><div class="sliwipi-actual-list"></div><div class="wishlist-owned-list-pagination"></div>';
 
   let hideUnnecessaryOptionsImg1 = document.querySelector('#global_actions > a > img');
