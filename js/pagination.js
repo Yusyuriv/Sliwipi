@@ -28,9 +28,12 @@
       html += '<button type="button" class="btnv6_blue_hoverfade">1</button>';
     else
       html += '<span>1</span>';
+    if(currentPage === 5)
+      html += '<button type="button" class="btnv6_blue_hoverfade">2</button>';
     if (currentPage > 2) {
-      html += '<span>...</span>';
-      if (currentPage === totalPages && totalPages > 3)
+      if(currentPage > 5)
+        html += '<span>...</span>';
+      if (currentPage > 3)
         html += '<button type="button" class="btnv6_blue_hoverfade">' + (currentPage - 2) + '</button>';
       html += '<button type="button" class="btnv6_blue_hoverfade">' + (currentPage - 1) + '</button>';
     }
@@ -38,10 +41,13 @@
       html += '<span>' + currentPage + '</span>';
     if (currentPage < totalPages - 1) {
       html += '<button type="button" class="btnv6_blue_hoverfade">' + (currentPage + 1) + '</button>';
-      if (currentPage === 1 && totalPages > 3)
+      if (currentPage < totalPages - 2)
         html += '<button type="button" class="btnv6_blue_hoverfade">' + (currentPage + 2) + '</button>';
-      html += '<span>...</span>';
+      if(currentPage < totalPages - 4)
+        html += '<span>...</span>';
     }
+    if(currentPage === totalPages - 4)
+      html += '<button type="button" class="btnv6_blue_hoverfade">' + (totalPages - 1) + '</button>';
     if(currentPage !== totalPages)
       html += '<button type="button" class="btnv6_blue_hoverfade">' + totalPages + '</button>';
     else
