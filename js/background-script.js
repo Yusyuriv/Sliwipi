@@ -17,6 +17,8 @@
 const REGEXP_USER_LINK = /((?:\/id\/[^?\/]+)|(?:\/profiles\/\d{17}))/i;
 /** Contains <code>true</code> or <code>false</code> depending on if wishlist performance improvement is enabled in options or not. */
 let wishlistEnabled;
+/** Contains <code>true</code> or <code>false</code> depending on if library performance improvement is enabled in options or not. */
+let libraryEnabled;
 /** Retrieves the information about wishlist being enabled or not from the storage or from the storage event */
 function retrieveStorageData(changes, areaName) {
   if(
@@ -25,14 +27,19 @@ function retrieveStorageData(changes, areaName) {
   ) {
     if(!changes) {
       chrome.storage.sync.get({
+        library: {
+          enabled: true
+        },
         wishlist: {
           enabled: true
         }
       }, function (data) {
         wishlistEnabled = data.wishlist.enabled;
+        libraryEnabled = data.wishlist.enabled;
       });
     } else {
       wishlistEnabled = changes.wishlist.newValue.enabled;
+      libraryEnabled = changes.wishlist.newValue.enabled;
     }
   }
 }
@@ -62,5 +69,18 @@ chrome.webRequest.onHeadersReceived.addListener(
     };
   },
   {urls: ["http://steamcommunity.com/*/wishlist*", "http://steamcommunity.com/*/wishlist/?*", "http://steamcommunity.com/*/wishlist?*"]},
+  ["blocking"]
+);
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    if(details.url.endsWith('#library=true') || details.url.endsWith('#library=false')) {
+      return {};
+    }
+    let url = details.url.replace(/#.*$/, '');
+    return {
+      redirectUrl: `${url}#library=${libraryEnabled}`
+    };
+  },
+  {urls: ["http://steamcommunity.com/*/games/?tab=all*", "http://steamcommunity.com/*/games?tab=all*"]},
   ["blocking"]
 );

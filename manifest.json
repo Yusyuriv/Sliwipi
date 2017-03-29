@@ -3,7 +3,7 @@
 
   "name": "Sliwipi",
   "description": "__MSG_ext_desc__",
-  "version": "1.0.6",
+  "version": "1.0.7",
 
   "background": {
     "scripts": ["js/background-script.js"],
@@ -66,12 +66,12 @@
         "http://steamcommunity.com/*/games?tab=all*"
       ],
       "js": [
+        "js/BuildGameRow.js",
         "js/cookies.js",
         "js/get-data-by-event.js",
         "js/constants.js",
         "js/jquery.min.js",
         "js/storage.js",
-        "js/BuildGameRow.js",
         "js/library-performance.js"
       ],
       "run_at": "document_start"

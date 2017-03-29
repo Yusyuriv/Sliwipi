@@ -13,15 +13,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-(async function() {
-  let libraryPerformance = await storage.sync.get({
-    library: {
-      enabled: true,
-      perPage: 15
-    }
-  });
+(function() {
+  let hash = location.hash.substr(1);
+  let enabled = hash === 'library=true';
+
+  history.replaceState({}, document.title, location.href.replace(location.hash, ''));
+
   // if library part is disabled in options, don't continue further
-  if(!libraryPerformance.library.enabled) {
+  if(!enabled) {
     return;
   }
   // a script element to be injected into the page to replace the original
