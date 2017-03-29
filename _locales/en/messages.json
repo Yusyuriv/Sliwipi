@@ -127,6 +127,10 @@
     "message": "Total of 0 items:",
     "description": "Wishlist total block, label before the list of wishlisted items"
   },
+  "wishlist_parsing": {
+    "message": "Preparing...",
+    "description": "Message displayed in the spinning circle when wishlist is already loaded and is now being parsed"
+  },
   "pagination_button_prev": {
     "message": "< prev",
     "description": "'Previous page' button in pagination'"

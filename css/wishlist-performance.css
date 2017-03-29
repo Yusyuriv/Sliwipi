@@ -62,8 +62,8 @@
   100% { transform: rotate(-360deg); }
 }
 .sliwipi-loading-spinner {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   display: inline-block;
   border: 10px aliceblue dashed;
   border-radius: 50%;
@@ -78,7 +78,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  line-height: 150px;
+  line-height: 200px;
   font-size: 2em;
   padding: 0 !important;
   animation-name: sliwipi-anti-loading-spin;

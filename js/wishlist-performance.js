@@ -362,88 +362,95 @@
 
       if(DEBUG)
         console.time(STR_EXTENSION_NAME + ': Downloading wishlist');
-      $.get(link, async function(data) {
+      $.get(link, function(data) {
         if(DEBUG) {
           console.timeEnd(STR_EXTENSION_NAME + ': Downloading wishlist');
           console.time(STR_EXTENSION_NAME + ': Parsing');
         }
-        let parser = new DOMParser();
-        parser = parser.parseFromString(data, 'text/html');
-        let $items = parser.querySelectorAll('.wishlistRow');
-        for (let $item of $items) {
-          $item.classList.add(CLASS_OVERLAY_CONTAINER);
-          let overlay = document.createElement('div');
-          overlay.className = CLASS_OVERLAY;
-          overlay.style.display = 'none';
-          $item.insertBefore(
-            overlay,
-            $item.childNodes[0]
-          );
-          $item.classList.remove('sortableRow');
-          let id = $item.id.split('_')[1];
-          let name = $item.querySelector('h4.ellipsis').textContent.trim();
-          let discounted = $item.querySelector('.discount_block');
-          let percent = 0, diff = 0, price = 0;
-          let rank = $item.querySelector('.wishlist_rank,.wishlist_rank_ro');
-          rank = (rank ? rank.value || rank.textContent.trim() : '0').trim();
-          rank = parseInt(rank, 10);
-          let totalPriceStr;
-          if (discounted) {
-            percent = parseFloat($item.querySelector('.discount_pct').textContent.trim().replace(/[^\d]/g, ''));
-            let $priceElement = $item.querySelector('.discount_original_price');
-            if(!wishlistStrings.totalPrice)
-              totalPriceStr = $priceElement.textContent.trim();
-            determineNumberFormattingRules($priceElement);
-            price = parsePrices($priceElement);
-            $priceElement.textContent = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, formatMoney(price));
-            let $finalPrice = $item.querySelector('.discount_final_price');
-            let finalPrice = parsePrices($finalPrice);
-            diff = price - finalPrice;
-            let diffClass = diff > 0 ? 'sliwipi-discount-savings' : 'sliwipi-discount-anti-savings';
-            let finalPriceTempl = $finalPrice.textContent.trim().replace(REGEXP_MONEY_NUMBER, `$1 ${formatMoney(-diff)} $2`);
-            $finalPrice.innerHTML = `<div class="${diffClass}">${finalPriceTempl}</div> ` + $finalPrice.innerHTML.replace(REGEXP_FORMATTED_NUMBER, formatMoney(finalPrice));
+        let spinnerLabel = document.querySelector('.sliwipi-loading-spinner > h1');
+        spinnerLabel.textContent = spinnerLabel.dataset.i18nOriginalText = 'Preparing...';
+        spinnerLabel.dataset.i18n = 'wishlist_parsing';
+        i18nDOM.nonchrome('data-i18n', LANGUAGE_DATA);
 
-            price = finalPrice;
-          } else {
-            let $priceElement = $item.querySelector('.price');
-            determineNumberFormattingRules($priceElement);
-            price = parsePrices($priceElement);
-            if(price > 0) {
+        setTimeout(function() {
+          let parser = new DOMParser();
+          parser = parser.parseFromString(data, 'text/html');
+          let $items = parser.querySelectorAll('.wishlistRow');
+          for (let $item of $items) {
+            $item.classList.add(CLASS_OVERLAY_CONTAINER);
+            let overlay = document.createElement('div');
+            overlay.className = CLASS_OVERLAY;
+            overlay.style.display = 'none';
+            $item.insertBefore(
+              overlay,
+              $item.childNodes[0]
+            );
+            $item.classList.remove('sortableRow');
+            let id = $item.id.split('_')[1];
+            let name = $item.querySelector('h4.ellipsis').textContent.trim();
+            let discounted = $item.querySelector('.discount_block');
+            let percent = 0, diff = 0, price = 0;
+            let rank = $item.querySelector('.wishlist_rank,.wishlist_rank_ro');
+            rank = (rank ? rank.value || rank.textContent.trim() : '0').trim();
+            rank = parseInt(rank, 10);
+            let totalPriceStr;
+            if (discounted) {
+              percent = parseFloat($item.querySelector('.discount_pct').textContent.trim().replace(/[^\d]/g, ''));
+              let $priceElement = $item.querySelector('.discount_original_price');
               if(!wishlistStrings.totalPrice)
                 totalPriceStr = $priceElement.textContent.trim();
+              determineNumberFormattingRules($priceElement);
+              price = parsePrices($priceElement);
               $priceElement.textContent = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, formatMoney(price));
+              let $finalPrice = $item.querySelector('.discount_final_price');
+              let finalPrice = parsePrices($finalPrice);
+              diff = price - finalPrice;
+              let diffClass = diff > 0 ? 'sliwipi-discount-savings' : 'sliwipi-discount-anti-savings';
+              let finalPriceTempl = $finalPrice.textContent.trim().replace(REGEXP_MONEY_NUMBER, `$1 ${formatMoney(-diff)} $2`);
+              $finalPrice.innerHTML = `<div class="${diffClass}">${finalPriceTempl}</div> ` + $finalPrice.innerHTML.replace(REGEXP_FORMATTED_NUMBER, formatMoney(finalPrice));
+
+              price = finalPrice;
+            } else {
+              let $priceElement = $item.querySelector('.price');
+              determineNumberFormattingRules($priceElement);
+              price = parsePrices($priceElement);
+              if(price > 0) {
+                if(!wishlistStrings.totalPrice)
+                  totalPriceStr = $priceElement.textContent.trim();
+                $priceElement.textContent = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, formatMoney(price));
+              }
             }
-          }
 
-          if (!wishlistStrings.totalPrice && price) {
-            wishlistStrings.totalPrice = totalPriceStr.replace(REGEXP_FORMATTED_NUMBER, '0');
-          }
-
-          if (showSaveChanges) {
-            let $removeLink = $item.querySelector('.wishlist_added_on > a[onclick]');
-            if ($removeLink) {
-              $removeLink.removeAttribute('onclick');
-              $removeLink.dataset.id = id;
+            if (!wishlistStrings.totalPrice && price) {
+              wishlistStrings.totalPrice = totalPriceStr.replace(REGEXP_FORMATTED_NUMBER, '0');
             }
-            $($item)
-              .find('.wishlistRankCtn > input')
-              .removeAttr('onchange')
-              .clone()
-              .removeAttr('class')
-              .attr('type', 'hidden')
-              .appendTo(updateSortingForm);
+
+            if (showSaveChanges) {
+              let $removeLink = $item.querySelector('.wishlist_added_on > a[onclick]');
+              if ($removeLink) {
+                $removeLink.removeAttribute('onclick');
+                $removeLink.dataset.id = id;
+              }
+              $($item)
+                .find('.wishlistRankCtn > input')
+                .removeAttr('onchange')
+                .clone()
+                .removeAttr('class')
+                .attr('type', 'hidden')
+                .appendTo(updateSortingForm);
+            }
+            originalData.push({id, name, rank, price, percent, diff, html: $($item).wrap('<div></div>').parent().html()});
           }
-          originalData.push({id, name, rank, price, percent, diff, html: $($item).wrap('<div></div>').parent().html()});
-        }
-        if(DEBUG)
-          console.timeEnd(STR_EXTENSION_NAME + ': Parsing');
+          if(DEBUG)
+            console.timeEnd(STR_EXTENSION_NAME + ': Parsing');
 
-        filterData();
+          filterData();
 
-        addWishlistTotalData();
+          addWishlistTotalData();
 
-        $('#game-name-filter').on('input', originalData.length > 500 ? debounce(500, filterData) : filterData);
-        $elementsToHide.css('visibility', 'visible');
+          $('#game-name-filter').on('input', originalData.length > 500 ? debounce(500, filterData) : filterData);
+          $elementsToHide.css('visibility', 'visible');
+        }, 50)
       });
     })();
   }
