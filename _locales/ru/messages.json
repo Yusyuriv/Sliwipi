@@ -15,7 +15,7 @@
     "message": "настроек:"
   },
   "options_main_language": {
-    "message": "основного расширения:"
+    "message": "основной:"
   },
   "options_enabled": {
     "message": "Включено"
@@ -94,6 +94,9 @@
   },
   "wishlist_includes_total": {
     "message": "Состоит из 0 предметов:"
+  },
+  "wishlist_parsing": {
+    "message": "Подготовка..."
   },
   "pagination_button_prev": {
     "message": "< назад"

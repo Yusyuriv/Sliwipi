@@ -95,6 +95,9 @@
   "wishlist_includes_total": {
     "message": "Total de 0 itens:"
   },
+  "wishlist_parsing": {
+    "message": "Preparando..."
+  },
   "pagination_button_prev": {
     "message": "< ant"
   },
