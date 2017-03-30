@@ -36,9 +36,10 @@ function i18nDOM(attrName) {
  * Goes through all elements on the page that have the specified attribute and replaces its text with localized value using the provided object
  * @param {string} attrName For example, <code>'data-i18n'</code>
  * @param {object} phrases An object containing phrases translated in the required language
+ * @param {string} selector Only apply localization for a specific selector
  */
-i18nDOM.nonchrome = function(attrName, phrases) {
-  let nodes = document.querySelectorAll(`[${attrName}]`);
+i18nDOM.nonchrome = function(attrName, phrases, selector = '') {
+  let nodes = document.querySelectorAll(selector + `[${attrName}]`);
   attrName = attrName.replace(/^data-/, '');
   for(let node of nodes) {
     let str = phrases[node.dataset[attrName]];

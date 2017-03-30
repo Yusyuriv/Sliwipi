@@ -370,7 +370,7 @@
         let spinnerLabel = document.querySelector('.sliwipi-loading-spinner > h1');
         spinnerLabel.textContent = spinnerLabel.dataset.i18nOriginalText = 'Preparing...';
         spinnerLabel.dataset.i18n = 'wishlist_parsing';
-        i18nDOM.nonchrome('data-i18n', LANGUAGE_DATA);
+        i18nDOM.nonchrome('data-i18n', LANGUAGE_DATA, '.sliwipi-loading-spinner > h1');
 
         setTimeout(function() {
           let parser = new DOMParser();
