@@ -23,7 +23,12 @@ let libraryEnabled;
 function retrieveStorageData(changes, areaName) {
   if(
     (areaName === 'sync' || !areaName) &&
-    ((changes && changes.wishlist && changes.wishlist.newValue && changes.wishlist.newValue.enabled != null) || !changes)
+    ((changes &&
+        (
+          (changes.wishlist && changes.wishlist.newValue && changes.wishlist.newValue.enabled != null) ||
+          (changes.library && changes.library.newValue && changes.library.newValue.enabled != null)
+        )
+    ) || !changes)
   ) {
     if(!changes) {
       chrome.storage.sync.get({
@@ -35,11 +40,13 @@ function retrieveStorageData(changes, areaName) {
         }
       }, function (data) {
         wishlistEnabled = data.wishlist.enabled;
-        libraryEnabled = data.wishlist.enabled;
+        libraryEnabled = data.library.enabled;
       });
     } else {
-      wishlistEnabled = changes.wishlist.newValue.enabled;
-      libraryEnabled = changes.wishlist.newValue.enabled;
+      if(changes.wishlist && changes.wishlist.newValue)
+        wishlistEnabled = changes.wishlist.newValue.enabled;
+      if(changes.library && changes.library.newValue)
+        libraryEnabled = changes.library.newValue.enabled;
     }
   }
 }

@@ -27,6 +27,26 @@
     "message": "Enabled",
     "description": "Label of the 'Enabled' checkbox in options"
   },
+  "options_pagination": {
+    "message": "Pagination",
+    "description": "Label of the 'Pagination' section in options"
+  },
+  "options_pagination_buttons_alignment": {
+    "message": "Previous/Next buttons position:",
+    "description": "Previous/Next buttons alignment:"
+  },
+  "options_pagination_buttons_alignment_dynamic": {
+    "message": "Dynamic",
+    "description": "Previous/Next buttons alignment:"
+  },
+  "options_pagination_buttons_alignment_fixed": {
+    "message": "Fixed",
+    "description": "Previous/Next buttons alignment:"
+  },
+  "options_pagination_buttons_alignment_edges": {
+    "message": "Fixed at edges",
+    "description": "Previous/Next buttons alignment:"
+  },
   "options_rows_per_page": {
     "message": "Rows per page:",
     "description": "Label of the 'Rows per page' dropdown in options"

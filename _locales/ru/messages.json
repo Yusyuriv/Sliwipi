@@ -20,6 +20,21 @@
   "options_enabled": {
     "message": "Включено"
   },
+  "options_pagination": {
+    "message": "Разбивка на страницы"
+  },
+  "options_pagination_buttons_alignment": {
+    "message": "Положение кнопок Пред/След страница:"
+  },
+  "options_pagination_buttons_alignment_dynamic": {
+    "message": "Динамическое"
+  },
+  "options_pagination_buttons_alignment_fixed": {
+    "message": "Фиксированное"
+  },
+  "options_pagination_buttons_alignment_edges": {
+    "message": "Фиксированное по краям"
+  },
   "options_rows_per_page": {
     "message": "Количество игр на странице:"
   },

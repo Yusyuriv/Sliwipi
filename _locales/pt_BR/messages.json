@@ -20,6 +20,21 @@
   "options_enabled": {
     "message": "Ligado"
   },
+  "options_pagination": {
+    "message": "Paginação"
+  },
+  "options_pagination_buttons_alignment": {
+    "message": "Posição dos botões Anterior/Próximo"
+  },
+  "options_pagination_buttons_alignment_dynamic": {
+    "message": "Dinâmica"
+  },
+  "options_pagination_buttons_alignment_fixed": {
+    "message": "Fixa"
+  },
+  "options_pagination_buttons_alignment_edges": {
+    "message": "Fixada nas bordas"
+  },
   "options_rows_per_page": {
     "message": "Linhas por página:"
   },

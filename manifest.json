@@ -3,7 +3,7 @@
 
   "name": "Sliwipi",
   "description": "__MSG_ext_desc__",
-  "version": "1.0.9",
+  "version": "1.1.0",
 
   "background": {
     "scripts": ["js/background-script.js"],
@@ -56,6 +56,7 @@
         "js/pagination.js",
         "js/debounce.js",
         "js/thenBy.js",
+        "js/settings-change-listener.js",
         "js/wishlist-performance.js"
       ],
       "run_at": "document_end"
@@ -72,6 +73,7 @@
         "js/constants.js",
         "js/jquery.min.js",
         "js/storage.js",
+        "js/settings-change-listener.js",
         "js/library-performance.js"
       ],
       "run_at": "document_start"

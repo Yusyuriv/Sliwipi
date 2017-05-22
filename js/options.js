@@ -26,6 +26,7 @@ let language = {
   options: document.querySelector('#options-language'),
   main: document.querySelector('#features-language')
 };
+let paginationButtonsAlignment = document.querySelector('#pagination-buttons-alignment');
 const POSSIBLE_LANGUAGES = Object.values(LIST_AVAILABLE_LANGUAGES).concat(['auto']);
 function saveOptions() {
   let data = {
@@ -40,11 +41,13 @@ function saveOptions() {
     language: {
       options: language.options.value,
       main: language.main.value
-    }
+    },
+    paginationButtonsAlignment: paginationButtonsAlignment.value
   };
   storage.sync.set(data);
 
   applyTranslation(true);
+  alignPaginationButtons();
 }
 wishlist.enabled.addEventListener('change', saveOptions);
 wishlist.perPage.addEventListener('change', saveOptions);
@@ -55,6 +58,20 @@ library.perPage.addEventListener('change', saveOptions);
 language.options.addEventListener('change', saveOptions);
 language.main.addEventListener('change', saveOptions);
 
+paginationButtonsAlignment.addEventListener('change', saveOptions);
+
+function alignPaginationButtons() {
+  chrome.tabs.query({
+    url: [
+      'http://steamcommunity.com/*/games*',
+      'http://steamcommunity.com/*/wishlist*'
+    ]
+  }, function (tabs) {
+    for(let tab of tabs) {
+      chrome.tabs.sendMessage(tab.id, {newPaginationButtonsAlignment: paginationButtonsAlignment.value});
+    }
+  });
+}
 async function applyTranslation(sendMessage) {
   let lang;
   if (language.options.value !== 'auto') {
@@ -95,7 +112,8 @@ async function restoreOptions() {
     language: {
       options: 'auto',
       main: 'auto'
-    }
+    },
+    paginationButtonsAlignment: 'dynamic'
   });
 
   if (data.wishlist.enabled) {
@@ -110,6 +128,8 @@ async function restoreOptions() {
 
   language.options.value = data.language.options;
   language.main.value = data.language.main;
+
+  paginationButtonsAlignment.value = data.paginationButtonsAlignment;
 
   applyTranslation();
 }
