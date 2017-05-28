@@ -98,5 +98,8 @@
     s.parentNode.removeChild(s);
   }
 
-  document.addEventListener('DOMContentLoaded', onReady);
+  if(document.readyState === 'interactive' || document.readyState === 'complete')
+    onReady();
+  else
+    document.addEventListener('DOMContentLoaded', onReady);
 })();
