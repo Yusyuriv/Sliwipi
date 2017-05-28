@@ -38,6 +38,9 @@
   "options_rows_per_page": {
     "message": "Количество игр на странице:"
   },
+  "options_default_sort_by": {
+    "message": "По умолчанию сортировать по:"
+  },
   "library_sort_by": {
     "message": "Сортировать по"
   },

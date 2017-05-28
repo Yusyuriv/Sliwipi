@@ -18,7 +18,8 @@
   let wishlist = await storage.sync.get({
     wishlist: {
       enabled: true,
-      perPage: 15
+      perPage: 15,
+      sortBy: 'rank'
     },
     language: {
       main: 'auto'
@@ -60,7 +61,7 @@
 
   let actualLanguage = mainLanguage === 'auto' ? autoLanguage : mainLanguage;
 
-  let sortingBy = 'rank';
+  let sortingBy = wishlist.sortBy;
   let filterBy = 'all';
 
   let LANGUAGE_DATA = await $.getJSON(chrome.extension.getURL(`/_locales/${actualLanguage}/messages.json`));
@@ -72,6 +73,7 @@
     LANGUAGE_DATA = await $.getJSON(chrome.extension.getURL(`/_locales/${actualLanguage}/messages.json`));
     i18nDOM.nonchrome('data-i18n', LANGUAGE_DATA);
     regeneratePagination(pageNum);
+    loadImagesInViewport();
   }
   chrome.runtime.onMessage.addListener(changeLanguage);
 
@@ -295,9 +297,24 @@
     $('#update-sorting').find('input[name^="priority"]').each(function () {
       actualListing.find(`[name="${this.getAttribute('name')}"]`).val(this.value);
     });
+
+    addWishlistTotalData();
+  }
+
+  function loadImagesInViewport() {
+    const images = document.querySelectorAll('.SLIWIPI_delayedimage');
+    for(const image of images) {
+      if(isInViewport(image)) {
+        image.src = image.dataset.src;
+        image.classList.remove('SLIWIPI_delayedimage');
+        delete image.dataset.src;
+      }
+    }
   }
 
   if (REGEXP_LOCATION.test(location.href)) {
+    document.addEventListener('scroll', debounce(50, loadImagesInViewport), { passive: true });
+
     (async function () {
       let linkElem = document.createElement('link');
       linkElem.href = LINK_GAME_LIST_CSS;
@@ -377,6 +394,10 @@
           parser = parser.parseFromString(data, 'text/html');
           let $items = parser.querySelectorAll('.wishlistRow');
           for (let $item of $items) {
+            let $img = $item.querySelector('.gameListRowLogo img');
+            $img.dataset.src = $img.src;
+            $img.src = 'http://community.edgecast.steamstatic.com/public/images/trans.gif';
+            $img.classList.add('SLIWIPI_delayedimage');
             $item.classList.add(CLASS_OVERLAY_CONTAINER);
             let overlay = document.createElement('div');
             overlay.className = CLASS_OVERLAY;
@@ -444,9 +465,12 @@
           if(DEBUG)
             console.timeEnd(STR_EXTENSION_NAME + ': Parsing');
 
+          changeDropdwonLabel(document.querySelector(`[data-data="${sortingBy}"]`));
           filterData();
 
           addWishlistTotalData();
+
+          loadImagesInViewport();
 
           $('#game-name-filter').on('input', originalData.length > 500 ? debounce(500, filterData) : filterData);
           $elementsToHide.css('visibility', 'visible');

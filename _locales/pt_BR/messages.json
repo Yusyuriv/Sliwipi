@@ -38,6 +38,9 @@
   "options_rows_per_page": {
     "message": "Linhas por página:"
   },
+  "options_default_sort_by": {
+    "message": "Ordenação padrão:"
+  },
   "library_sort_by": {
     "message": "Ordenar por"
   },

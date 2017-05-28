@@ -51,6 +51,10 @@
     "message": "Rows per page:",
     "description": "Label of the 'Rows per page' dropdown in options"
   },
+  "options_default_sort_by": {
+    "message": "Default sorting:",
+    "description": "Label of the 'Default sorting' dropdown in options"
+  },
   "library_sort_by": {
     "message": "Sort by",
     "description": "Label of 'Sort by' list"

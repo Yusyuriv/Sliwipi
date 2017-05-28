@@ -16,11 +16,13 @@
 
 let wishlist = {
   enabled: document.querySelector('#wishlist-enabled'),
-  perPage: document.querySelector('#wishlist-per-page')
+  perPage: document.querySelector('#wishlist-per-page'),
+  sortBy: document.querySelector('#wishlist-sorting')
 };
 let library = {
   enabled: document.querySelector('#library-enabled'),
-  perPage: document.querySelector('#library-per-page')
+  perPage: document.querySelector('#library-per-page'),
+  sortBy: document.querySelector('#library-sorting')
 };
 let language = {
   options: document.querySelector('#options-language'),
@@ -32,11 +34,13 @@ function saveOptions() {
   let data = {
     wishlist: {
       enabled: wishlist.enabled.checked,
-      perPage: parseInt(wishlist.perPage.value, 10)
+      perPage: parseInt(wishlist.perPage.value, 10),
+      sortBy: wishlist.sortBy.value
     },
     library: {
       enabled: library.enabled.checked,
-      perPage: parseInt(library.perPage.value, 10)
+      perPage: parseInt(library.perPage.value, 10),
+      sortBy: library.sortBy.value
     },
     language: {
       options: language.options.value,
@@ -51,9 +55,11 @@ function saveOptions() {
 }
 wishlist.enabled.addEventListener('change', saveOptions);
 wishlist.perPage.addEventListener('change', saveOptions);
+wishlist.sortBy.addEventListener('change', saveOptions);
 
 library.enabled.addEventListener('change', saveOptions);
 library.perPage.addEventListener('change', saveOptions);
+library.sortBy.addEventListener('change', saveOptions);
 
 language.options.addEventListener('change', saveOptions);
 language.main.addEventListener('change', saveOptions);
@@ -103,11 +109,13 @@ async function restoreOptions() {
   let data = await storage.sync.get({
     wishlist: {
       enabled: true,
-      perPage: 15
+      perPage: 15,
+      sortBy: 'rank'
     },
     library: {
       enabled: true,
-      perPage: 15
+      perPage: 15,
+      sortBy: 'name'
     },
     language: {
       options: 'auto',
@@ -120,11 +128,13 @@ async function restoreOptions() {
     wishlist.enabled.checked = true;
   }
   wishlist.perPage.value = data.wishlist.perPage;
+  wishlist.sortBy.value = data.wishlist.sortBy;
 
   if (data.library.enabled) {
     library.enabled.checked = true;
   }
   library.perPage.value = data.library.perPage;
+  library.sortBy.value = data.library.sortBy;
 
   language.options.value = data.language.options;
   language.main.value = data.language.main;

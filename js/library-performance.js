@@ -19,7 +19,9 @@
 (async function () {
   let library = await storage.sync.get({
     library: {
-      perPage: 15, enabled: true
+      perPage: 15,
+      enabled: true,
+      sortBy: 'name'
     },
     language: {
       main: 'auto'
@@ -59,6 +61,7 @@
       perPage: ${library.perPage},
       languageData: ${JSON.stringify(LANGUAGE_DATA)},
       fileSizeMultipliers: ${JSON.stringify(FILE_SIZE_MULTIPLIER)},
+      sortBy: ${JSON.stringify(library.sortBy)},
       html: \`${encodeURIComponent(html)}\`
     };`;
     document.body.appendChild(s);
@@ -66,6 +69,11 @@
 
     s = document.createElement('script');
     s.src = chrome.extension.getURL('/js/debounce.js');
+    document.body.appendChild(s);
+    s.parentNode.removeChild(s);
+
+    s = document.createElement('script');
+    s.src = chrome.extension.getURL('/js/is-in-viewport.js');
     document.body.appendChild(s);
     s.parentNode.removeChild(s);
 

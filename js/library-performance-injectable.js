@@ -144,7 +144,7 @@
     });
   }
 
-  let sortingBy = 'name';
+  let sortingBy = SLIWIPI.sortBy;
   let filterBy = 'all';
 
   function changeDropdownLabel(target) {
@@ -152,6 +152,7 @@
     label.textContent = target.textContent;
     label.dataset.i18n = target.dataset.i18n;
   }
+  changeDropdownLabel(document.querySelector(`[data-data="${sortingBy}"]`));
   $('#sliwipi-sort-by-dropdown').find('a').on('click', function(e) {
     changeDropdownLabel(this);
     e.preventDefault();
@@ -256,6 +257,18 @@
     regenerateList();
   }
 
+  function loadImagesInViewport() {
+    const images = document.querySelectorAll('.gameListRowLogo img[id^="delayedimage_"]');
+    for(const image of images) {
+      if(SLIWIPI.isInViewport(image)) {
+        image.src = image.parentNode.parentNode.parentNode.dataset.img || image.parentNode.parentNode.parentNode.parentNode.dataset.img;
+        image.removeAttribute('id');
+      }
+    }
+  }
+
+  document.addEventListener('scroll', SLIWIPI.debounce(50, loadImagesInViewport), { passive: true });
+
   function regenerateList() {
     let popupsHtml = '';
     let listHtml = '';
@@ -272,9 +285,8 @@
 
     popupsContainer.innerHTML = popupsHtml;
     listContainer.innerHTML = listHtml;
-    document.querySelectorAll('.gameListRow').forEach(function (/**HTMLElement*/v) {
-      v.querySelector('img').setAttribute('src', v.dataset.img);
-    });
+
+    loadImagesInViewport();
   }
 
   predebounceFilterApps();
