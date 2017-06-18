@@ -14,6 +14,7 @@
  limitations under the License.
  */
 
+const REGEXP_LINK_PROTOCOL = /^(https?:)\/\//;
 const REGEXP_USER_LINK = /((?:\/id\/[^?\/]+)|(?:\/profiles\/\d{17}))/i;
 /** Contains <code>true</code> or <code>false</code> depending on if wishlist performance improvement is enabled in options or not. */
 let wishlistEnabled;
@@ -57,12 +58,13 @@ chrome.webRequest.onBeforeRequest.addListener(
   function (details) {
     // Redirect all requests to this page that aren't POST and aren't made using Ajax
     if (details.method !== 'POST' && wishlistEnabled && details.type !== 'xmlhttprequest') {
-      let id = details.url.match(REGEXP_USER_LINK)[1];
-      return { redirectUrl: 'http://steamcommunity.com' + id + '/games/?tab=recent#wishlist-redirected' };
+      const id = details.url.match(REGEXP_USER_LINK)[1];
+      const protocol = details.url.match(REGEXP_LINK_PROTOCOL)[1];
+      return { redirectUrl: `${protocol}//steamcommunity.com${id}/games/?tab=recent#wishlist-redirected` };
     }
     return {};
   },
-  {urls: ["http://steamcommunity.com/*/wishlist*", "http://steamcommunity.com/*/wishlist/?*", "http://steamcommunity.com/*/wishlist?*"]},
+  {urls: ["*://steamcommunity.com/*/wishlist*", "*://steamcommunity.com/*/wishlist/?*", "*://steamcommunity.com/*/wishlist?*"]},
   ["blocking"]
 );
 chrome.webRequest.onHeadersReceived.addListener(
@@ -70,12 +72,13 @@ chrome.webRequest.onHeadersReceived.addListener(
     // Redirect only POST requests to this page
     if(details.method !== 'POST')
       return {};
-    let id = details.url.match(REGEXP_USER_LINK)[1];
+    const id = details.url.match(REGEXP_USER_LINK)[1];
+    const protocol = details.url.match(REGEXP_LINK_PROTOCOL)[1];
     return {
-      redirectUrl: 'http://steamcommunity.com' + id + '/games/?tab=recent#wishlist-redirected'
+      redirectUrl: `${protocol}//steamcommunity.com${id}/games/?tab=recent#wishlist-redirected`
     };
   },
-  {urls: ["http://steamcommunity.com/*/wishlist*", "http://steamcommunity.com/*/wishlist/?*", "http://steamcommunity.com/*/wishlist?*"]},
+  {urls: ["*://steamcommunity.com/*/wishlist*", "*://steamcommunity.com/*/wishlist/?*", "*://steamcommunity.com/*/wishlist?*"]},
   ["blocking"]
 );
 chrome.webRequest.onBeforeRequest.addListener(
@@ -88,6 +91,6 @@ chrome.webRequest.onBeforeRequest.addListener(
       redirectUrl: `${url}#library=${libraryEnabled}`
     };
   },
-  {urls: ["http://steamcommunity.com/*/games/?tab=all*", "http://steamcommunity.com/*/games?tab=all*"]},
+  {urls: ["*://steamcommunity.com/*/games/?tab=all*", "*://steamcommunity.com/*/games?tab=all*"]},
   ["blocking"]
 );

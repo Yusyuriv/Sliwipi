@@ -25,6 +25,7 @@ const REGEXP_MONEY_NUMBER = /^([^\d]*)(?:\d+(?:(?: |,|\.)\d*)?)(.*)$/;
 const REGEXP_FORMATTED_NUMBER = /(\d(?:.*\d)?)/;
 const REGEXP_NON_DIGIT = /[^\d]/g;
 const REGEXP_LAST_NON_DIGIT = /[^\d](?!.*[^\d].*)/;
+const REGEXP_EMPTY_FRACTION_PART = /^0+$/;
 
 /** 12 hours in ms */
 const TIME_12_HOURS = 1000 * 60 * 60 * 12;
@@ -32,7 +33,7 @@ const TIME_12_HOURS = 1000 * 60 * 60 * 12;
 const LINK_GAME_LIST_CSS = 'http://community.edgecast.steamstatic.com/public/css/skin_1/profile_games_list.css';
 const LINK_GAME_CSS = 'http://store.edgecast.steamstatic.com/public/css/v6/game.css?v=MAcFD0Vgzrdm';
 const LINK_STORE_API_REMOVE_FROM_WISHLIST = '//store.steampowered.com/api/removefromwishlist';
-const LINK_STORE_ABOUT = '//store.steampowered.com/about/';
+const LINK_STORE_ABOUT = `//store.steampowered.com/${location.protocol === 'http:' ? 'cart' : 'about'}/`;
 
 const CLASS_OVERLAY = 'wishlist-performance-fix-overlay';
 const CLASS_OVERLAY_CONTAINER = 'wishlist-performance-fix-overlay-container';

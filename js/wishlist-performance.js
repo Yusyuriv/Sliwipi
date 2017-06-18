@@ -28,6 +28,8 @@
 
   let mainLanguage = wishlist.language.main;
 
+  let currencyInfo = {};
+
   const DEBUG = !chrome.runtime.getManifest().update_url;
   wishlist = wishlist.wishlist;
   if (!wishlist.enabled)
@@ -50,11 +52,14 @@
 
   let origCurrencies = await get.promise('g_rgCurrencyData');
   let currencies = {};
+  let currencyToCode = {};
   for(let currencyName in origCurrencies) {
     let origCurrency = origCurrencies[currencyName];
     currencies[origCurrency.strSymbol] = LIST_CURRENCY_TO_LANGUAGE[origCurrency.strCode];
+    currencyToCode[origCurrency.strSymbol] = currencyName;
   }
   let numberFormattingLanguage;
+  let numberFormattingRules;
 
   let autoLanguage = getCookie('Steam_Language');
   autoLanguage = LIST_AVAILABLE_LANGUAGES[autoLanguage] || 'en';
@@ -80,9 +85,12 @@
   function determineNumberFormattingRules($priceElement) {
     if(!numberFormattingLanguage && $priceElement) {
       let currencySymbol = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, '').trim();
-      let lang = currencies[currencySymbol];
-      if(lang)
-        numberFormattingLanguage = lang.replace('_', '-');
+      currencyInfo = currencies[currencySymbol];
+      if(currencyInfo) {
+        numberFormattingLanguage = currencyInfo.replace('_', '-');
+        currencyInfo = currencyToCode[currencyInfo];
+        numberFormattingRules = CURRENCY_FORMATTING_RULES[currencyToCode[currencySymbol]];
+      }
     }
   }
 
@@ -90,20 +98,17 @@
     if (!elem)
       return 0;
     let str = elem.textContent.trim();
+    let noFractions = numberFormattingRules.fractionDigits === 0;
     str = str.match(REGEXP_FORMATTED_NUMBER);
     str = str ? str[1] : null;
     if(str == null)
       return 0;
-    str = str.split(REGEXP_LAST_NON_DIGIT).map(n => n.replace(REGEXP_NON_DIGIT, '')).join('.');
+    if(noFractions)
+      str = str.replace(/\D/g, '');
+    else
+      str = str.split(REGEXP_LAST_NON_DIGIT).map(n => n.replace(REGEXP_NON_DIGIT, '')).join('.');
     str = str ? parseFloat(str) : 0;
     return isNaN(str) ? 0 : str;
-  }
-
-  function formatMoney(num) {
-    num = num.toLocaleString(numberFormattingLanguage || 'en', {minimumFractionDigits: 2});
-    if(num.substr(-2) === '00')
-      num = num.substr(0, num.length - 3);
-    return num;
   }
 
   function addWishlistTotalData() {
@@ -119,7 +124,7 @@
     $wishlistTotalAmount.text($wishlistTotalAmount.text().replace(/\d+/, itemNames.length));
     let $wishlistTotalPrice = $wishlistTotal.find('.price');
     if(wishlistStrings.totalPrice) {
-      totalPrice = formatMoney(totalPrice);
+      totalPrice = formatMoney(totalPrice, numberFormattingRules);
       $wishlistTotalPrice.text(
         wishlistStrings.totalPrice.replace('0', totalPrice)
       );
@@ -298,6 +303,8 @@
       actualListing.find(`[name="${this.getAttribute('name')}"]`).val(this.value);
     });
 
+    loadImagesInViewport();
+
     addWishlistTotalData();
   }
 
@@ -396,7 +403,7 @@
           for (let $item of $items) {
             let $img = $item.querySelector('.gameListRowLogo img');
             $img.dataset.src = $img.src;
-            $img.src = 'http://community.edgecast.steamstatic.com/public/images/trans.gif';
+            $img.src = '//community.edgecast.steamstatic.com/public/images/trans.gif';
             $img.classList.add('SLIWIPI_delayedimage');
             $item.classList.add(CLASS_OVERLAY_CONTAINER);
             let overlay = document.createElement('div');
@@ -422,13 +429,13 @@
                 totalPriceStr = $priceElement.textContent.trim();
               determineNumberFormattingRules($priceElement);
               price = parsePrices($priceElement);
-              $priceElement.textContent = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, formatMoney(price));
+              $priceElement.textContent = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, formatMoney(price, numberFormattingRules));
               let $finalPrice = $item.querySelector('.discount_final_price');
               let finalPrice = parsePrices($finalPrice);
               diff = price - finalPrice;
               let diffClass = diff > 0 ? 'sliwipi-discount-savings' : 'sliwipi-discount-anti-savings';
-              let finalPriceTempl = $finalPrice.textContent.trim().replace(REGEXP_MONEY_NUMBER, `$1 ${formatMoney(-diff)} $2`);
-              $finalPrice.innerHTML = `<div class="${diffClass}">${finalPriceTempl}</div> ` + $finalPrice.innerHTML.replace(REGEXP_FORMATTED_NUMBER, formatMoney(finalPrice));
+              let finalPriceTempl = $finalPrice.textContent.trim().replace(REGEXP_MONEY_NUMBER, `$1 ${formatMoney(-diff, numberFormattingRules)} $2`);
+              $finalPrice.innerHTML = `<div class="${diffClass}">${finalPriceTempl}</div> ` + $finalPrice.innerHTML.replace(REGEXP_FORMATTED_NUMBER, formatMoney(finalPrice, numberFormattingRules));
 
               price = finalPrice;
             } else {
@@ -438,7 +445,7 @@
               if(price > 0) {
                 if(!wishlistStrings.totalPrice)
                   totalPriceStr = $priceElement.textContent.trim();
-                $priceElement.textContent = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, formatMoney(price));
+                $priceElement.textContent = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, formatMoney(price, numberFormattingRules));
               }
             }
 

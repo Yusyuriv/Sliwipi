@@ -44,8 +44,8 @@
   "content_scripts": [
     {
       "matches": [
-        "http://steamcommunity.com/*/games/?tab=recent*",
-        "http://steamcommunity.com/*/games?tab=recent*"
+        "*://steamcommunity.com/*/games/?tab=recent*",
+        "*://steamcommunity.com/*/games?tab=recent*"
       ],
       "js": [
         "js/cookies.js",
@@ -59,14 +59,15 @@
         "js/is-in-viewport.js",
         "js/thenBy.js",
         "js/settings-change-listener.js",
+        "js/money-formatting.js",
         "js/wishlist-performance.js"
       ],
       "run_at": "document_end"
     },
     {
       "matches": [
-        "http://steamcommunity.com/*/games/?tab=all*",
-        "http://steamcommunity.com/*/games?tab=all*"
+        "*://steamcommunity.com/*/games/?tab=all*",
+        "*://steamcommunity.com/*/games?tab=all*"
       ],
       "js": [
         "js/BuildGameRow.js",
@@ -87,10 +88,10 @@
     "webRequestBlocking",
     "storage",
     "tabs",
-    "http://steamcommunity.com/*/games*",
-    "http://steamcommunity.com/*/wishlist*",
-    "http://store.steampowered.com/about*",
-    "http://store.steampowered.com/api/*"
+    "*://steamcommunity.com/*/games*",
+    "*://steamcommunity.com/*/wishlist*",
+    "*://store.steampowered.com/about*",
+    "*://store.steampowered.com/api/*"
   ],
 
   "default_locale": "en"

@@ -199,7 +199,7 @@
         sortingFunction = firstBy('name', { ignoreCase: true });
         break;
       case SORTING_OPTIONS.playtime:
-        sortingFunction = firstBy('hours', { direction: -1 }).thenBy('name', { ignoreCase: true })
+        sortingFunction = firstBy('hours', { direction: -1 }).thenBy('name', { ignoreCase: true });
         break;
       case SORTING_OPTIONS.installedSize:
         sortingFunction = firstBy('installedSize', { direction: -1 }).thenBy('name', { ignoreCase: true });
@@ -248,7 +248,7 @@
     reapplyPagination();
   }
 
-  window.filterApps = rgGames.length > 1000 ? SLIWIPI.debounce(500, predebounceFilterApps) : predebounceFilterApps;
+  window.filterApps = SLIWIPI.debounce(500, predebounceFilterApps);
 
   function changePage(newPage) {
     SLIWIPI.pageNum = newPage;
