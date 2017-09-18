@@ -15,6 +15,7 @@
  */
 
 const REGEXP_LINK_PROTOCOL = /^(https?:)\/\//;
+const REGEXP_LINK_CC = /cc=([a-z]{2})/;
 const REGEXP_USER_LINK = /((?:\/id\/[^?\/]+)|(?:\/profiles\/\d{17}))/i;
 /** Contains <code>true</code> or <code>false</code> depending on if wishlist performance improvement is enabled in options or not. */
 let wishlistEnabled;
@@ -60,7 +61,9 @@ chrome.webRequest.onBeforeRequest.addListener(
     if (details.method !== 'POST' && wishlistEnabled && details.type !== 'xmlhttprequest') {
       const id = details.url.match(REGEXP_USER_LINK)[1];
       const protocol = details.url.match(REGEXP_LINK_PROTOCOL)[1];
-      return { redirectUrl: `${protocol}//steamcommunity.com${id}/games/?tab=recent#wishlist-redirected` };
+      let cc = details.url.match(REGEXP_LINK_CC);
+      cc = cc ? `&cc=${cc[1]}` : '';
+      return { redirectUrl: `${protocol}//steamcommunity.com${id}/games/?tab=recent${cc}#wishlist-redirected` };
     }
     return {};
   },

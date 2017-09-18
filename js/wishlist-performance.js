@@ -331,6 +331,7 @@
 
   if (REGEXP_LOCATION.test(location.href)) {
     document.addEventListener('scroll', debounce(50, loadImagesInViewport), { passive: true });
+    let query = window.parseQueryParams();
 
     (async function () {
       let linkElem = document.createElement('link');
@@ -340,6 +341,8 @@
 
       let link = location.href.replace(REGEXP_LINK, '$1');
       link = link + '/wishlist/';
+      if(query.cc && query.cc.length === 2)
+        link += '?cc=' + query.cc;
       history.replaceState({}, 'Steam Community :: Wishlist', link);
 
       let html = await $.ajax({

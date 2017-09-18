@@ -16,7 +16,7 @@
 const STR_EXTENSION_NAME = 'Library and Wishlist Peformance Fix';
 
 /** Regexp for location after redirecting from <code>/wishlist</code> */
-const REGEXP_LOCATION = /^https?:\/\/(?:www\.)?steamcommunity\.com\/(?:(?:id\/[^\/.]+)|(?:profiles\/\d{17}))\/games\/?(?:\?tab=recent)?#wishlist-redirected$/i;
+const REGEXP_LOCATION = /^https?:\/\/(?:www\.)?steamcommunity\.com\/(?:(?:id\/[^\/.]+)|(?:profiles\/\d{17}))\/games\/?(?:\?tab=recent)(?:[?&]cc=[a-z]{2})?#wishlist-redirected$/i;
 /** A regexp for extracting the part of URL until <code>id/custom_url</code> or <code>profiles/profile_id</code> (inclusive) */
 const REGEXP_LINK = /^(https?:\/\/(?:www\.)?steamcommunity\.com\/(?:(?:id\/[^\/.]+)|(?:profiles\/\d{17})))\/.+$/i;
 /** A regexp for extracting user's sessionID from the store site */

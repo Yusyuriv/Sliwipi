@@ -60,6 +60,7 @@
         "js/thenBy.js",
         "js/settings-change-listener.js",
         "js/money-formatting.js",
+        "js/query-params.js",
         "js/wishlist-performance.js"
       ],
       "run_at": "document_end"
