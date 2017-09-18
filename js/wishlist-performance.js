@@ -277,7 +277,9 @@
         break;
       case 'price':
         sortingFunction = firstBy((a, b) => {
-          return a.price === 0 ? Infinity : a.price - b.price;
+          if(!b.price)
+            return Infinity;
+          return !a.price ? -Infinity : a.price - b.price;
         }).thenBy('name');
         break;
       case 'percent':
