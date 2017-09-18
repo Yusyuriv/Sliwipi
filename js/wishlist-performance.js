@@ -19,7 +19,8 @@
     wishlist: {
       enabled: true,
       perPage: 15,
-      sortBy: 'rank'
+      sortBy: 'rank',
+      useJPY: false
     },
     language: {
       main: 'auto'
@@ -87,9 +88,16 @@
       let currencySymbol = $priceElement.textContent.replace(REGEXP_FORMATTED_NUMBER, '').trim();
       currencyInfo = currencies[currencySymbol];
       if(currencyInfo) {
+        let currencyCode;
+        if(currencyInfo === 'zh' && wishlist.useJPY) {
+          currencyInfo = 'jp';
+          currencyCode = 'JPY';
+        } else {
+          currencyCode = currencyToCode[currencySymbol];
+        }
         numberFormattingLanguage = currencyInfo.replace('_', '-');
-        currencyInfo = currencyToCode[currencyInfo];
-        numberFormattingRules = CURRENCY_FORMATTING_RULES[currencyToCode[currencySymbol]];
+        currencyInfo = origCurrencies[currencyCode];
+        numberFormattingRules = CURRENCY_FORMATTING_RULES[currencyCode];
       }
     }
   }

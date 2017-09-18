@@ -166,5 +166,9 @@
   "about_link": {
     "message": "About",
     "description": "'About' link in the options page"
+  },
+  "options_use_jpy": {
+    "message": "I use Japanese Yen",
+    "description": "Checkbox in options for people using Japanese Yen as their Steam currency"
   }
 }

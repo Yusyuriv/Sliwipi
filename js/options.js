@@ -17,7 +17,8 @@
 let wishlist = {
   enabled: document.querySelector('#wishlist-enabled'),
   perPage: document.querySelector('#wishlist-per-page'),
-  sortBy: document.querySelector('#wishlist-sorting')
+  sortBy: document.querySelector('#wishlist-sorting'),
+  useJPY: document.querySelector('#use-jpy')
 };
 let library = {
   enabled: document.querySelector('#library-enabled'),
@@ -35,7 +36,8 @@ function saveOptions() {
     wishlist: {
       enabled: wishlist.enabled.checked,
       perPage: parseInt(wishlist.perPage.value, 10),
-      sortBy: wishlist.sortBy.value
+      sortBy: wishlist.sortBy.value,
+      useJPY: wishlist.useJPY.checked
     },
     library: {
       enabled: library.enabled.checked,
@@ -110,7 +112,8 @@ async function restoreOptions() {
     wishlist: {
       enabled: true,
       perPage: 15,
-      sortBy: 'rank'
+      sortBy: 'rank',
+      useJPY: false
     },
     library: {
       enabled: true,

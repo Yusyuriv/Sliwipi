@@ -124,5 +124,8 @@
   },
   "about_link": {
     "message": "Sobre"
+  },
+  "options_use_jpy": {
+    "message": "Eu uso iene japonês"
   }
 }

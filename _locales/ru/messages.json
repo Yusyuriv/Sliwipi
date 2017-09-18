@@ -124,5 +124,8 @@
   },
   "about_link": {
     "message": "О расширении"
+  },
+  "options_use_jpy": {
+    "message": "Я использую японскую иену"
   }
 }
