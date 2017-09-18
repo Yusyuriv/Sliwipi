@@ -14,10 +14,16 @@ const CURRENCY_FORMATTING_RULES = {
     groupSeparator: '\'',
     fractionDigits: 0
   },
+  INR: {
+    groupAmount: 1
+  },
   RUB: {
     groupSeparator: ' ',
-    fractionSeparator: ',',
-    fractionDigits: 2
+    fractionSeparator: ','
+  },
+  BRL: {
+    groupSeparator: '.',
+    fractionSeparator: ','
   }
 };
 /**
