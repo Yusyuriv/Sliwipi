@@ -28,7 +28,6 @@ const CURRENCY_FORMATTING_RULES = {
 };
 /**
  * @type {MoneyFormattingCurrency}
- * @private
  */
 const _DEFAULT_CURRENCY_FORMAT = {
   groupSeparator: ',',
@@ -56,7 +55,7 @@ for(let currency in CURRENCY_FORMATTING_RULES) {
 /**
  * Get a formatted number for a currency you specify.
  * @param {number} number The number to format.
- * @param {string|MoneyFormattingCurrency} currency A string
+ * @param {string|MoneyFormattingCurrency} currency
  * containing currency name or an object describing formatting rules.
  */
 function formatMoney(number, currency) {
