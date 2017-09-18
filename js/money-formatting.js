@@ -39,6 +39,9 @@ const _DEFAULT_CURRENCY_FORMAT = {
   fractionDigits: 2,
   forceFraction: false
 };
+for(let currency in CURRENCY_FORMATTING_RULES) {
+  CURRENCY_FORMATTING_RULES[currency] = Object.assign({}, _DEFAULT_CURRENCY_FORMAT, CURRENCY_FORMATTING_RULES[currency]);
+}
 
 /**
  * @typedef {object} MoneyFormattingCurrency
