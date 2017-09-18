@@ -24,8 +24,5 @@
       timer = setTimeout(cb, delay);
     };
   }
-  if(window.SLIWIPI)
-    window.SLIWIPI.debounce = debounce;
-  else
-    window.debounce = debounce;
+  (window.SLIWIPI || window).debounce = debounce;
 })();

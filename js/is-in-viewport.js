@@ -23,8 +23,5 @@
       rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 300 &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth) + 300;
   }
-  if(window.SLIWIPI)
-    window.SLIWIPI.isInViewport = isInViewport;
-  else
-    window.isInViewport = isInViewport;
+  (window.SLIWIPI || window).isInViewport = isInViewport;
 })();
