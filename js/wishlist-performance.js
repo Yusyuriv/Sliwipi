@@ -106,11 +106,11 @@
     if (!elem)
       return 0;
     let str = elem.textContent.trim();
-    let noFractions = (numberFormattingRules || _DEFAULT_CURRENCY_FORMAT).fractionDigits === 0;
     str = str.match(REGEXP_FORMATTED_NUMBER);
     str = str ? str[1] : null;
     if(str == null)
       return 0;
+    let noFractions = (numberFormattingRules || _DEFAULT_CURRENCY_FORMAT).fractionDigits === 0;
     if(noFractions)
       str = str.replace(/\D/g, '');
     else
