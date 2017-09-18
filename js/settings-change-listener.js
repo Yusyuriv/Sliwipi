@@ -39,7 +39,7 @@
       style.text(`
         .pagination-navprev {
           position: absolute;
-          right: calc(50% + 226px);
+          right: calc(50% + 236px);
         }
         .pagination-navnext {
           position: absolute;
