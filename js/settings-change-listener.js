@@ -13,7 +13,7 @@
     LANGUAGE_DATA = await $.getJSON(chrome.extension.getURL(`/_locales/${language}/messages.json`));
 
     let s = document.createElement('script');
-    s.innerHTML = `
+    s.textContent = `
       SLIWIPI.languageData = ${JSON.stringify(LANGUAGE_DATA)};
       SLIWIPI.reapplyPagination(SLIWIPI.pageNum);
     `;

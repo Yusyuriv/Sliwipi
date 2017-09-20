@@ -57,7 +57,7 @@
     });
 
     let s = document.createElement('script');
-    s.innerHTML = `window.SLIWIPI = { 
+    s.textContent = `window.SLIWIPI = { 
       perPage: ${library.perPage},
       languageData: ${JSON.stringify(LANGUAGE_DATA)},
       fileSizeMultipliers: ${JSON.stringify(FILE_SIZE_MULTIPLIER)},

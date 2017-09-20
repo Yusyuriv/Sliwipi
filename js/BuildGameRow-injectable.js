@@ -50,7 +50,7 @@
     }
 
     let s = document.createElement('script');
-    s.innerHTML = str.join('\n');
+    s.textContent = str.join('\n');
     document.head.appendChild(s);
     s.parentNode.removeChild(s);
 

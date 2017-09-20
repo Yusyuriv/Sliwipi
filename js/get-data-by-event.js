@@ -18,7 +18,7 @@
   // A script that will be inserted into the page to get access to variables in its context.
   // Then it will be able to send those variables to the extension using a custom event.
   let script = document.createElement('script');
-  script.innerHTML = `
+  script.textContent = `
 document.addEventListener('GameListPerformanceFix:Request', e => {
   var result;
   if(typeof e.detail === 'object') {
