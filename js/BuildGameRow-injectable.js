@@ -32,17 +32,19 @@
       str[line] = '//' + str[line];
     }
 
-    if (str.length !== 94)
+    if (str.length !== 111)
       return;
 
     /* I think including the actual code from the page with slight modifications
      would be illegal?.. So this array contains the numbers of lines in the original
      function that should be commented out. */
     let lines = [
-      65, 66, 67, 68,
-      75, 76, 77, 78,
-      81, 83, 84, 85, 87, 88,
-      90, 91, 92
+      69, 70, 71, 72, 73, 74,
+      81, 82, 83, 84,
+      92, 93, 94, 95,
+      98,
+      100, 101, 102, 103, 104, 105,
+      107, 108, 109
     ];
 
     for (let line of lines) {
